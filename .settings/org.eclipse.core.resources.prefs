@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/lijialu/config/DataInit.java=UTF-8
+encoding//src/main/java/com/lijialu/controller/Admin.java=UTF-8
+encoding//src/main/java/com/lijialu/controller/BookShop.java=UTF-8
+encoding//src/main/java/com/lijialu/interceptor/AuthenticationInterceptor.java=UTF-8
+encoding//src/main/java/com/lijialu/mapper/BookMapper.java=UTF-8
+encoding//src/main/java/com/lijialu/service/CartService.java=UTF-8

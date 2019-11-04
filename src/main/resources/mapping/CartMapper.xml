@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="con.liuhaonan.mapper.CartMapper">
+		
+		<!-- 通过用户查找购物车 -->
+		<select id="findByUid" resultMap="getList">
+			select * from s_cartitem c,t_book b where c.bid = b.bid and uid=#{uid} order by c.orderBy
+		</select>
+		
+		
+		<!-- 通过uid和bid产找cartitem -->
+		<select id="findByUidAndBid" resultType="item">
+			select * from s_cartitem where uid=#{uid} and bid=#{bid}
+		</select>
+		<!-- 根据购物条目数量修改 -->
+		<update id="updateQuantity">
+			update s_cartitem  set quantity=#{quantity} where cartItemId=#{cartItemId} 
+		</update>
+		<!-- 增加cartItem的数量  -->
+		<insert id="addCartItem" >
+			insert into s_cartitem(cartItemId,quantity,bid,uid) values(#{cartItemId},#{quantity},#{bid},#{uid})
+		</insert>
+		<!-- 单条删除 -->
+		<delete id="deleteOne" >
+			delete from s_cartitem where cartItemId =#{0}
+		</delete>
+		<!-- 清空购物车方法 -->
+		<delete id="deleteCart" >
+			delete from s_cartitem where uid=#{0}
+		</delete>
+		
+		
+		
+		<resultMap type="item" id="getList">
+			<id column="cartItemId" property="cartItemId"/>
+			<result column="quantity" property="quantity"/>
+			<result column="bid" property="bid"/>
+			<result column="uid" property="uid"/>
+			<association property="user" javaType="user">
+				<id property="uid" column="uid"/>
+			</association>
+			<association property="book" javaType="book">
+				<id column="bid" property="bid"/>
+				<result column="bname" property="bname"/>
+				<result column="author" property="author"/>
+				<result column="price" property="price"/>
+				<result column="currPrice" property="currPrice"/>
+				<result column="discount" property="discount"/>
+				<result column="press" property="press"/>
+				<result column="publishtime" property="publishtime"/>
+				<result column="edition" property="edition"/>
+				<result column="pageNum" property="pageNum"/>
+				<result column="wordNum" property="wordNum"/>
+				<result column="printtime" property="printtime"/>
+				<result column="booksize" property="booksize"/>
+				<result column="paper" property="paper"/>
+				<result column="image_w" property="image_w"/>
+				<result column="image_b" property="image_b"/>
+			</association>
+		</resultMap>
+		
+		
+		
+		
+		<!-- 按cartItemId查找 
+		<select id="findByCartItemId" resultMap="getList">
+			select * from s_cartitem c,t_book b where c.bid=b.bid and c.cartItemId=#{cartItemId}
+		</select>
+		-->
+		
+		
+		<!-- 批量加载 
+		<select id="loadCartItems" resultMap="getList" parameterType="java.util.List">
+			<![CDATA[
+				select * from s_cartitem c,t_book b where c.bid=b.bid and cartItemId in
+			]]>
+			<foreach collection="list" item="model" open="(" separator="," close=")">
+				#{model}
+			</foreach>
+		</select>
+		-->
+		
+		
+		
+</mapper>

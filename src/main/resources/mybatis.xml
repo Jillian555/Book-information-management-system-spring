@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	<!-- 配置实体类的别名 	-->
+	<typeAliases>		
+		<typeAlias type="com.liuhaonan.pojo.Book" alias="book" />
+		<typeAlias type="com.liuhaonan.pojo.User" alias="user" />
+		<typeAlias type="com.liuhaonan.CartItem" alias="item" />
+	</typeAliases>
+
+	<!-- 这里不需要再注册mybatis的SQL映射文件 ，因为在Spring的配置文件中配置sqlSessionFactory时注册了mapper的路径-->
+</configuration>

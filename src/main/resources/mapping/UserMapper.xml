@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuhaonan.mapper.UserMapper">
+		
+		<select id="findAllUsers" resultType="user">
+			select * from s_user 
+		</select>
+		
+		<!--用户模块  => 校验用户名是否已经注册
+		<select id="ajaxCheckLogin" parameterType="string" resultType="int">
+			select count(*) from s_user where loginname=#{loginname}
+		</select>
+		 -->  
+		<!-- 注册新用户 
+		<insert id="add" parameterType="user">
+			insert into s_user(uid,loginname,loginpass) values(#{uid},#{loginname},#{loginpass})
+		</insert>
+		-->
+		<!-- 登录验证 
+		<select id="findByLoginnameAndLoginpass" resultType="user">
+			select * from s_user where loginname=#{0} and loginpass=#{1}
+		</select>
+		-->
+		<!-- 按照uid和password查询 
+		<select id="findByUidAndPassword" resultType="int">
+			select count(*) from s_user where uid=#{0} and loginpass=#{1}
+		</select>
+		-->
+		<!-- 修改密码 
+		<update id="updatePassword">
+			update s_user set loginpass=#{0} where uid=#{1}
+		</update>
+  		-->
+</mapper>
